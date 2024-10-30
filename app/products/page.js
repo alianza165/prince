@@ -2,8 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Menu } from 'lucide-react'
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 
 const products = [
   { name: 'Switch Gear', image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/switchgear.png' },
