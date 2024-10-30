@@ -70,7 +70,7 @@ export default function Component() {
           />
           <div className="container mx-auto relative z-10 px-4 flex flex-col items-center sm:items-start justify-center text-center sm:text-left">
             <div className="w-full sm:w-1/2">
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4">Our Projects</h1>
+              <h1 className="text-4xl md:text-8xl font-bold mb-4" style={{ fontFamily: 'Eurostile' }}>Our Projects</h1>
               <p className="text-md sm:text-lg lg:text-xl">Discover our range of high-quality electrical solutions</p>
             </div>
           </div>

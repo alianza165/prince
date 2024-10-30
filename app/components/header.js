@@ -88,7 +88,7 @@ export default function Header() {
               <div className="flex items-center hidden sm:block mr-20">
                 <div className="flex items-center space-x-8">
                   <div className="flex items-center">
-                    <div className="bg-red-500 rounded-full p-2 mr-2">
+                    <div className="bg-red-500 rounded-lg p-2 mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                       </svg>
@@ -99,7 +99,7 @@ export default function Header() {
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <div className="bg-blue-600 rounded-full p-2 mr-2">
+                    <div className="bg-blue-600 rounded-lg p-2 mr-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                       </svg>
@@ -113,23 +113,21 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <nav className="bg-red-500 hidden lg:block">
+          <nav className="bg-red-500 hidden lg:block py-4">
             <div className="container mx-auto px-4">
               <div className="flex justify-center items-center">
-
-                <ul className="flex space-x-16 py-4">
+                <ul className="flex">
                   {['Home', 'Products', 'Services', 'Testimonials', 'Projects', 'Latest News', 'Contact Us'].map((item) => (
                     <li key={item}>
                       <Link
                         href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`}
-                        className="text-white hover:text-gray-200 transition duration-150 ease-in-out"
+                        className="text-white hover:text-gray-200 transition duration-150 ease-in-out py-6 text-lg px-6 text-white bg-transparent hover:bg-white hover:text-gray-900 transition-colors"
                       >
                         {item}
                       </Link>
                     </li>
                   ))}
                 </ul>
-
               </div>
             </div>
           </nav>

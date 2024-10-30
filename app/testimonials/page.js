@@ -16,20 +16,22 @@ export default function TestimonialsPage() {
     <div className="flex flex-col min-h-screen">
 
       <main className="flex-grow">
-        <div className="relative bg-gray-900 text-white h-[400px] sm:h-[700px] py-16">
-          <Image
-            src="https://ducaqjqbmh7lv.cloudfront.net/mysite/testimonials.png"
-            alt="Testimonials hero image"
-            width={1920}
-            height={400}
-            className="absolute inset-0 w-full h-full object-cover opacity-50"
+
+        <section className="relative bg-gray-900 text-white h-[400px] sm:h-[700px] flex items-center">
+          <div
+            className="absolute inset-0 bg-cover bg-center z-0 -ml-64"
+            style={{
+              backgroundImage: "url('https://ducaqjqbmh7lv.cloudfront.net/mysite/testimonials.png')",
+              filter: "brightness(0.5)",
+            }}
           />
-          <div className="absolute flex max-w-7xl px-4 sm:px-6 lg:px-8 items-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              Testimonials
-            </h1>
+          <div className="container mx-auto relative z-10 px-4 flex flex-col items-center sm:items-start justify-center text-center sm:text-left">
+            <div className="w-full sm:w-1/2">
+              <h1 className="text-4xl md:text-8xl font-bold mb-4" style={{ fontFamily: 'Eurostile' }}>Testimonials</h1>
+              <p className="text-md sm:text-lg lg:text-xl">Discover our range of high-quality electrical solutions</p>
+            </div>
           </div>
-        </div>
+        </section>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

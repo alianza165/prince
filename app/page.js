@@ -123,14 +123,14 @@ export default function HomePage() {
             quality={100}
             className="z-0"
           />
-          <div className="relative z-20 h-full flex flex-col justify-center items-start text-white px-4 pl-20">
-            <div className="text-left pl-4">
-              <h1 className="text-6xl font-bold mb-4" style={{ fontFamily: 'Eurostile' }}>
-                <p className="text-4xl mb-4">Welcome To</p>
+          <div className="relative z-20 h-full flex flex-col justify-center text-white px-4 pl-20">
+            <div className="pl-32 pb-32">
+              <h1 className="text-8xl font-bold mb-4" style={{ fontFamily: 'Eurostile' }}>
+                <p className="text-6xl mb-4">Welcome To</p>
                 <span>Prince Group</span>
               </h1>
-              <button variant="outline" className="bg-transparent hover:bg-white hover:text-gray-900 transition-colors">
-                Read More
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Get Started
               </button>
             </div>
           </div>

@@ -7,17 +7,22 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow">
-        <div className="relative h-[400px] sm:h-[700px] bg-gray-800">
-          <Image
-            src="https://ducaqjqbmh7lv.cloudfront.net/mysite/latest-news.png"
-            alt="Electrician working"
-            layout="fill"
-            objectFit="cover"
+
+        <section className="relative bg-gray-900 text-white h-[400px] sm:h-[700px] flex items-center">
+          <div
+            className="absolute inset-0 bg-cover bg-center z-0 -ml-64"
+            style={{
+              backgroundImage: "url('https://ducaqjqbmh7lv.cloudfront.net/mysite/latest-news.png')",
+              filter: "brightness(0.5)",
+            }}
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center">
-            <h1 className="text-3xl md:text-7xl font-bold text-white ml-10 md:ml-96">Latest News</h1>
+          <div className="container mx-auto relative z-10 px-4 flex flex-col items-center sm:items-start justify-center text-center sm:text-left">
+            <div className="w-full sm:w-1/2">
+              <h1 className="text-4xl md:text-8xl font-bold mb-4" style={{ fontFamily: 'Eurostile' }}>Latest News</h1>
+              <p className="text-md sm:text-lg lg:text-xl">Discover our range of high-quality electrical solutions</p>
+            </div>
           </div>
-        </div>
+        </section>
 
         <div className="container mx-auto px-4 py-8">
           <div className="space-y-8">
