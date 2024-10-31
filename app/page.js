@@ -51,7 +51,7 @@ export default function HomePage() {
     },
     {
       name: 'Industrial',
-      image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/industrial.png',
+      image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/industrial2.png',
       description: 'Durable and efficient solutions for industrial use.',
       link: '/products/industrial'
     },
@@ -112,11 +112,11 @@ export default function HomePage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Eurostile' }}>
       <main className="flex-grow">
         <section className="hidden sm:block relative h-[800px] overflow-hidden">
           <Image
-            src="https://ducaqjqbmh7lv.cloudfront.net/mysite/Header-Banner.png"
+            src="https://ducaqjqbmh7lv.cloudfront.net/mysite/home-Banner.jpeg"
             alt="Prince Group Background"
             layout="fill"
             objectFit="cover"
@@ -188,7 +188,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-gray-100 py-16 px-4 bg-[#e6f7ff]">
+        <section className="py-16 px-4 bg-[#e6f7ff]">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">Our Products</h2>
             
@@ -239,7 +239,7 @@ export default function HomePage() {
                     alt={`${category.name} product`}
                     width={400}
                     height={300}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-80 object-cover"
                   />
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2">{category.name}</h3>
@@ -360,7 +360,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-gray-100 py-16 px-4 bg-[#e6f7ff]">
+        <section className="py-16 px-4 bg-[#e6f7ff]">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">Latest News</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

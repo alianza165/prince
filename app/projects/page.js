@@ -57,14 +57,14 @@ export default function Component() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Eurostile' }}>
 
       <main className="flex-grow">
         <section className="relative bg-gray-900 text-white h-[400px] sm:h-[700px] flex items-center">
           <div
             className="absolute inset-0 bg-cover bg-center z-0 -ml-64"
             style={{
-              backgroundImage: "url('https://ducaqjqbmh7lv.cloudfront.net/mysite/projects.jpeg')",
+              backgroundImage: "url('https://ducaqjqbmh7lv.cloudfront.net/mysite/projects-banner.jpeg')",
               filter: "brightness(0.5)",
             }}
           />

@@ -5,14 +5,14 @@ import { Menu, Facebook, Twitter, Linkedin, Send } from 'lucide-react'
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ fontFamily: 'Eurostile' }}>
       <main className="flex-grow">
 
         <section className="relative bg-gray-900 text-white h-[400px] sm:h-[700px] flex items-center">
           <div
             className="absolute inset-0 bg-cover bg-center z-0 -ml-64"
             style={{
-              backgroundImage: "url('https://ducaqjqbmh7lv.cloudfront.net/mysite/latest-news.png')",
+              backgroundImage: "url('https://ducaqjqbmh7lv.cloudfront.net/mysite/latestnews-banner.jpeg')",
               filter: "brightness(0.5)",
             }}
           />

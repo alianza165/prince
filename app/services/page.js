@@ -15,7 +15,7 @@ const products = [
 
 export default function ProductsPage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Eurostile' }}>
 
       <main className="flex-grow">
         <section className="relative bg-gray-900 text-white h-[400px] sm:h-[700px] flex items-center">

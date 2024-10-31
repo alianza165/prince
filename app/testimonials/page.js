@@ -13,7 +13,7 @@ export default function TestimonialsPage() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Eurostile' }}>
 
       <main className="flex-grow">
 
@@ -21,7 +21,7 @@ export default function TestimonialsPage() {
           <div
             className="absolute inset-0 bg-cover bg-center z-0 -ml-64"
             style={{
-              backgroundImage: "url('https://ducaqjqbmh7lv.cloudfront.net/mysite/testimonials.png')",
+              backgroundImage: "url('https://ducaqjqbmh7lv.cloudfront.net/mysite/testimonial-banner.jpeg')",
               filter: "brightness(0.5)",
             }}
           />

@@ -61,10 +61,10 @@ export default function Header() {
                           height={50}
                         />
                         <Image
-                          className="hidden lg:block ml-10 mt-2 ml-10"  // Original styling for larger screens
+                          className="hidden lg:block ml-10 my-2 ml-44"  // Original styling for larger screens
                           src={logoClass}
-                          width={150}
-                          height={50}
+                          width={180}
+                          height={70}
                         />
                       </div>
                     </div>
