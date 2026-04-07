@@ -1,385 +1,376 @@
-
 'use client'
 
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Menu, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useMediaQuery } from 'react-responsive'
+import { Zap, Settings, BarChart3, ChevronRight, ArrowRight, Shield, Clock, Award, PlayCircle } from 'lucide-react'
 
+const clients = [
+  'Coca-Cola', 'Toyota', 'Nestlé', 'Engro', 'Suzuki', 'Millat Tractors',
+  'Fatima Fertilizer', 'Sapphire Textile', 'Diamond Tyres', 'Kohinoor',
+  'Atlas Honda', 'Servis', 'Haleeb Foods', 'Gul Ahmed Textile',
+  'DG Khan Cement', 'National Foods', 'Treet Corporation', 'ISL',
+]
 
+const brands = [
+  { name: 'Mitsubishi Electric', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/mitsubishi.png' },
+  { name: 'MaxGe', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/maxge.png' },
+  { name: 'Shimaden', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/shimaden.png' },
+  { name: 'Iskra', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/iskra.png' },
+  { name: 'IME Italy', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/ime.png' },
+  { name: 'LEFOO', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/lefoo.png' },
+  { name: 'Samwha', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/samwha.png' },
+  { name: 'Beijer Electronics', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/beijer.png' },
+]
+
+const projects = [
+  {
+    title: '2500 KVA LT Panel — Commercial Building',
+    description: 'Supply and commissioning of a 2500 KVA LT panel including incoming, outgoing, and power factor correction sections, built to IEC standards.',
+    image: '/project1.jpg',
+  },
+  {
+    title: '25000 KVA LT & MCC Panels — Ethanol Plant',
+    description: 'Large-scale LT and Motor Control Centre panel installation for an ethanol manufacturing plant, engineered for heavy continuous industrial loads.',
+    image: '/project4.png',
+  },
+  {
+    title: '2 × 2000 KVA Panels — Manufacturing Industry',
+    description: 'Dual 2000 KVA LT panels providing redundant power distribution across production lines, with genuine Mitsubishi MCCBs and busbars throughout.',
+    image: '/project5.png',
+  },
+]
 
 export default function HomePage() {
-
-  const brands = [
-    { name: 'Mitsubishi Electric', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/mitsubishi.png' },
-    { name: 'MaxGe', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/maxge.png' },
-    { name: 'Shimaden', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/shimaden.png' },
-    { name: 'iskra', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/iskra.png' },
-    { name: 'IME Italy', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/ime.png' },
-    { name: 'LEFOO', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/lefoo.png' },
-    { name: 'Samwha', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/samwha.png' },
-    { name: 'Beijer Electronics', logo: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/beijer.png' },
-  ]
-
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const isMobile = useMediaQuery({ maxWidth: 768 })
-
-  useEffect(() => {
-    if (isMobile) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % brands.length)
-      }, 3000)
-      return () => clearInterval(interval)
-    }
-  }, [isMobile])
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % brands.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + brands.length) % brands.length)
-  }
-
-  const productCategories = [
-    {
-      name: 'Commercial',
-      image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/commercial.png',
-      description: 'High-quality electrical solutions for commercial applications.',
-      link: '/products/commercial'
-    },
-    {
-      name: 'Industrial',
-      image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/industrial2.png',
-      description: 'Durable and efficient solutions for industrial use.',
-      link: '/products/industrial'
-    },
-    {
-      name: 'Residential',
-      image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/residential.png',
-      description: 'Safe and reliable solutions for residential applications.',
-      link: '/products/residential'
-    }
-  ];
-
-  const [currentProduct, setCurrentProduct] = useState(0)
-
-  const nextProduct = () => {
-    setCurrentProduct((prev) => (prev + 1) % productCategories.length)
-  }
-
-  const prevProduct = () => {
-    setCurrentProduct((prev) => (prev - 1 + productCategories.length) % productCategories.length)
-  }
-
-  const solutionsData = [
-    {
-      id: '01',
-      title: 'Complete provision',
-      description: 'Complete provision of fool proof, safety standards compliant electrical distribution system from the transformer to your light switches / appliances.'
-    },
-    {
-      id: '02',
-      title: 'Provision of electrical',
-      description: 'Provision of electrical drawings / Single Line Diagrams / load calculations, based on your requirements.'
-    },
-    {
-      id: '03',
-      title: 'Custom solutions',
-      description: 'Custom solutions, energy monitoring, ground-fault protection, motor protection, Power factor improvement panels.'
-    },
-    {
-      id: '04',
-      title: 'Automatic Transfer Switch',
-      description: 'Automatic Transfer Switch (ATS) Panel (Between Mains supply and generator).'
-    },
-    {
-      id: '05',
-      title: 'Solar Panels',
-      description: 'Solar Panels\' Electrical accessories.'
-    }
-  ]
-
-  const [solutionsCurrentIndex, setSolutionsCurrentIndex] = useState(0)
-
-  const nextSolutionSlide = () => {
-    setSolutionsCurrentIndex((prevIndex) => (prevIndex + 1) % solutionsData.length)
-  }
-
-  const prevSolutionSlide = () => {
-    setSolutionsCurrentIndex((prevIndex) => (prevIndex - 1 + solutionsData.length) % solutionsData.length)
-  }
-
   return (
-    <div className="flex flex-col min-h-screen" style={{ fontFamily: 'Eurostile' }}>
-      <main className="flex-grow">
-        <section className="hidden sm:block relative h-[800px] overflow-hidden">
-          <Image
-            src="https://ducaqjqbmh7lv.cloudfront.net/mysite/home-Banner.jpeg"
-            alt="Prince Group Background"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            className="z-0"
-          />
-          <div className="relative z-20 h-full flex flex-col justify-center text-white px-4 pl-20">
-            <div className="pl-32 pb-32">
-              <h1 className="text-8xl font-bold mb-4" style={{ fontFamily: 'Eurostile' }}>
-                <p className="text-6xl mb-4">Welcome To</p>
-                <span>Prince Group</span>
-              </h1>
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Get Started
-              </button>
-            </div>
-          </div>
-        </section>
-        <section className="block sm:hidden relative overflow-hidden">
-          <Image
-            src="https://ducaqjqbmh7lv.cloudfront.net/mysite/mobile_banner.png"
-            alt="Prince Group Background"
-            width={500}
-            height={500}
-            objectFit="cover"
-            quality={100}
-            className="object-cover z-0 brightness-50"
-          />
-          
-          {/* Overlayed Text Section */}
-          <div className="absolute inset-0 flex items-center justify-start text-white px-6 pl-10 z-10">
-            <div className="text-left">
-              <h1 className="text-4xl font-bold mb-4" style={{ fontFamily: 'Eurostile' }}>
-                <p className="text-3xl mb-2">Welcome To</p>
-                <span>Prince Group</span>
-              </h1>
-              <button className="mt-4 px-6 py-2 border border-white text-white bg-transparent hover:bg-white hover:text-gray-900 transition-colors">
-                Read More
-              </button>
-            </div>
-          </div>
-        </section>
+    <div style={{ fontFamily: 'Eurostile' }}>
 
-        <section className="pb-8 px-4 flex flex-col md:flex-row">
-          {/* Text Section */}
-          <div className="md:ml-48 container mx-auto mt-8 md:mt-16 md:order-2">
-            <div className="border-l-4 border-l-red-500 pl-4">
-              <h2 className="text-xl">Who we are</h2>
-              <h2 className="text-3xl font-bold mb-8">Why Prince Group?</h2>
-            </div>
-            <p className="text-gray-600 mb-8 w-full md:w-4/6">
-              Prince Group offers innovative electrical solutions with a commitment to quality and customer satisfaction. Our expertise spans across various industries, providing tailored products and services to meet your specific needs.
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden" style={{ minHeight: '88vh' }}>
+        <Image
+          src="/hero-banner.png"
+          alt="Prince Electric"
+          fill
+          objectFit="cover"
+          quality={100}
+          className="z-0"
+          priority
+        />
+        <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.55) 100%)' }} />
+        <div className="relative z-20 h-full flex flex-col justify-center px-6 lg:px-24 py-24">
+          <div className="max-w-3xl">
+            <span
+              className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-6"
+              style={{ backgroundColor: 'rgba(37,99,235,0.3)', color: '#93c5fd', border: '1px solid rgba(37,99,235,0.5)' }}
+            >
+              Mitsubishi Electric — Sole Authorized Distributor in Pakistan
+            </span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+              Pakistan's Premier<br />
+              <span style={{ color: '#60a5fa' }}>Electrical Solutions</span><br />
+              Partner
+            </h1>
+            <p className="text-lg mb-10 max-w-xl" style={{ color: '#cbd5e1' }}>
+              Switchgear supply, engineering services, and smart energy management — all under one roof.
             </p>
-            <div>
-              <button className="bg-transparent border border-gray-500 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded transition-colors">
-                Learn More
-              </button>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/products"
+                className="px-7 py-3.5 rounded-md font-semibold text-sm transition-colors"
+                style={{ backgroundColor: '#2563eb', color: '#ffffff' }}
+              >
+                Explore Products
+              </Link>
+              <Link
+                href="/contact-us"
+                className="px-7 py-3.5 rounded-md font-semibold text-sm transition-colors border"
+                style={{ backgroundColor: 'transparent', color: '#ffffff', borderColor: 'rgba(255,255,255,0.4)' }}
+              >
+                Get Free Consultation
+              </Link>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Image Section */}
-          <div className="md:pl-32 mb-8 md:mb-0 md:order-1">
-            <Image
-              src="https://ducaqjqbmh7lv.cloudfront.net/mysite/About.png"
-              alt="Prince Group Background"
-              width={500}
-              height={500}
-            />
+      {/* ── THREE PILLARS ────────────────────────────────────────────────── */}
+      <section className="py-20 px-4" style={{ backgroundColor: '#f8fafc' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold mb-3" style={{ color: '#0f172a' }}>What We Do</h2>
+            <p style={{ color: '#64748b' }}>Three integrated capabilities. One trusted partner.</p>
           </div>
-        </section>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Zap className="h-8 w-8" style={{ color: '#dc2626' }} />,
+                title: 'Switchgear & Components',
+                desc: "Pakistan's sole distributor of Mitsubishi Electric switchgear. We supply MCCBs, MCBs, contactors, air circuit breakers and the full range of LV components for commercial, industrial and residential projects.",
+                link: '/products',
+                linkText: 'View Products',
+                accentColor: '#dc2626',
+              },
+              {
+                icon: <Settings className="h-8 w-8" style={{ color: '#2563eb' }} />,
+                title: 'Engineering Services',
+                desc: 'End-to-end LT panel consultation and fabrication. We draft Single Line Diagrams, perform load calculations, size breakers, and deliver fully commissioned panels — from transformer to appliances.',
+                link: '/services',
+                linkText: 'View Services',
+                accentColor: '#2563eb',
+              },
+              {
+                icon: <BarChart3 className="h-8 w-8" style={{ color: '#059669' }} />,
+                title: 'Smart Energy Management',
+                desc: 'DataBridge — our plug-and-play energy monitoring system. Real-time dashboards, predictive maintenance alerts, and per-machine consumption tracking to cut your electricity costs measurably.',
+                link: '/energy-management',
+                linkText: 'Learn About DataBridge',
+                accentColor: '#059669',
+                highlight: true,
+              },
+            ].map((pillar) => (
+              <div
+                key={pillar.title}
+                className="bg-white rounded-xl p-8 shadow-sm flex flex-col"
+                style={{ border: pillar.highlight ? '2px solid #059669' : '1px solid #e2e8f0' }}
+              >
+                <div
+                  className="w-16 h-16 rounded-xl flex items-center justify-center mb-6"
+                  style={{ backgroundColor: pillar.highlight ? '#f0fdf4' : '#f8fafc' }}
+                >
+                  {pillar.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3" style={{ color: '#0f172a' }}>{pillar.title}</h3>
+                <p className="text-sm leading-relaxed flex-grow mb-6" style={{ color: '#64748b' }}>{pillar.desc}</p>
+                <Link
+                  href={pillar.link}
+                  className="inline-flex items-center gap-1 text-sm font-semibold"
+                  style={{ color: pillar.accentColor }}
+                >
+                  {pillar.linkText} <ChevronRight className="h-4 w-4" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <section className="py-16 px-4 bg-[#e6f7ff]">
-          <div className="container mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Our Products</h2>
-            
-            {/* Carousel for Mobile */}
-            <div className="block md:hidden relative">
-              <div className="relative">
-                <Image
-                  src={productCategories[currentProduct].image}
-                  alt={`${productCategories[currentProduct].name} product`}
-                  width={400}
-                  height={300}
-                  className="w-full h-[300px] object-cover rounded-md"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4 rounded-b-md">
-                  <h3 className="text-xl font-semibold">{productCategories[currentProduct].name}</h3>
-                  <p className="text-sm">{productCategories[currentProduct].description}</p>
-                  <Link href={productCategories[currentProduct].link}>
-                    <button className="bg-transparent border border-gray-500 text-gray-300 hover:bg-gray-200 hover:text-gray-900 px-4 py-2 mt-2 rounded transition-colors">
-                      Learn More
-                    </button>
+      {/* ── TRUST STATS ──────────────────────────────────────────────────── */}
+      <section className="py-16 px-4" style={{ backgroundColor: '#0f172a' }}>
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { value: '25+', label: 'Years of Experience', icon: <Clock className="h-5 w-5" /> },
+            { value: '50+', label: 'Major Industrial Clients', icon: <Award className="h-5 w-5" /> },
+            { value: '3', label: 'Offices Nationwide', icon: <Shield className="h-5 w-5" /> },
+            { value: '100%', label: 'Original Mitsubishi Products', icon: <Zap className="h-5 w-5" /> },
+          ].map((stat) => (
+            <div key={stat.label}>
+              <div className="flex justify-center mb-2" style={{ color: '#2563eb' }}>{stat.icon}</div>
+              <div className="text-4xl font-bold mb-1" style={{ color: '#ffffff' }}>{stat.value}</div>
+              <div className="text-xs uppercase tracking-wide" style={{ color: '#64748b' }}>{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── PRODUCTS ─────────────────────────────────────────────────────── */}
+      <section className="py-20 px-4" style={{ backgroundColor: '#ffffff' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold mb-3" style={{ color: '#0f172a' }}>Our Products</h2>
+            <p style={{ color: '#64748b' }}>Tailored electrical solutions across all sectors</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: 'Commercial',
+                image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/commercial.png',
+                description: 'MCCBs, MCBs, contactors, surge protection and panel accessories for commercial buildings, plazas and offices.',
+                href: '/products',
+              },
+              {
+                name: 'Industrial',
+                image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/industrial2.png',
+                description: 'Heavy-duty air circuit breakers, vacuum circuit breakers, motor protection devices and full LT panel solutions for industrial facilities.',
+                href: '/products',
+              },
+              {
+                name: 'Residential',
+                image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/residential.png',
+                description: 'Safe, standards-compliant MCBs, RCCBs, surge protection and over-voltage protectors for homes and housing societies.',
+                href: '/products',
+              },
+            ].map((cat) => (
+              <div key={cat.name} className="rounded-xl overflow-hidden shadow-md border" style={{ borderColor: '#e2e8f0' }}>
+                <div className="relative h-52">
+                  <Image src={cat.image} alt={cat.name} fill objectFit="cover" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold mb-2" style={{ color: '#0f172a' }}>{cat.name}</h3>
+                  <p className="text-sm leading-relaxed mb-5" style={{ color: '#64748b' }}>{cat.description}</p>
+                  <Link
+                    href={cat.href}
+                    className="inline-flex items-center gap-1 text-sm font-semibold"
+                    style={{ color: '#2563eb' }}
+                  >
+                    Explore Range <ChevronRight className="h-4 w-4" />
                   </Link>
                 </div>
               </div>
-              <button
-                variant="ghost"
-                size="icon"
-                className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white hover:bg-opacity-75"
-                onClick={prevProduct}
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <button
-                variant="ghost"
-                size="icon"
-                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white hover:bg-opacity-75"
-                onClick={nextProduct}
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-            </div>
-
-            {/* Grid Layout for Desktop */}
-            <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {productCategories.map((category) => (
-                <div key={category.name} className="bg-white rounded-lg shadow-md overflow-hidden">
-                  <Image
-                    src={category.image}
-                    alt={`${category.name} product`}
-                    width={400}
-                    height={300}
-                    className="w-full h-80 object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{category.name}</h3>
-                    <p className="text-gray-600 mb-4">{category.description}</p>
-                    <Link href={category.link}>
-                      <button className="bg-transparent border border-gray-500 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded transition-colors">
-                        Learn More
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <div className="container mx-auto px-4 py-8">
-          <h2 className="text-4xl font-bold text-center mb-8">Our Brands</h2>
-          {isMobile ? (
-            <div className="relative">
-              <div className="overflow-hidden">
-                <div
-                  className="flex transition-transform duration-300 ease-in-out"
-                  style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                >
-                  {brands.map((brand, index) => (
-                    <div key={index} className="w-full flex-shrink-0 px-4">
-                      <div className="border p-4 flex items-center justify-center h-32">
-                        <Image src={brand.logo} alt={brand.name} width={200} height={60} className="max-w-full max-h-full" />
-                      </div>
+      {/* ── CLIENT WALL ──────────────────────────────────────────────────── */}
+      <section className="py-20 px-4" style={{ backgroundColor: '#f8fafc' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-3" style={{ color: '#0f172a' }}>Trusted by Pakistan's Leading Industries</h2>
+            <p style={{ color: '#64748b' }}>From FMCG giants to heavy industry — they rely on Prince Electric</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {clients.map((client) => (
+              <span
+                key={client}
+                className="px-4 py-2 rounded-full text-sm font-medium"
+                style={{ backgroundColor: '#ffffff', color: '#475569', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
+              >
+                {client}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── DATABRIDGE SPOTLIGHT ─────────────────────────────────────────── */}
+      <section className="py-24 px-4 relative overflow-hidden" style={{ backgroundColor: '#0f172a' }}>
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, #2563eb 0%, transparent 60%)' }} />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <span
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-6"
+                style={{ backgroundColor: 'rgba(5,150,105,0.2)', color: '#34d399', border: '1px solid rgba(5,150,105,0.4)' }}
+              >
+                <Zap className="h-3 w-3" /> New — Smart Energy Management
+              </span>
+              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+                Is Your Electricity Bill<br />
+                <span style={{ color: '#34d399' }}>Still a Mystery?</span>
+              </h2>
+              <p className="text-base mb-8" style={{ color: '#94a3b8' }}>
+                Energy is your second-largest expense — growing 10–20% yearly. Monthly bills show you <em>what</em> you spent, never <em>where</em> or <em>why</em>. DataBridge changes that.
+              </p>
+              <div className="space-y-4 mb-10">
+                {[
+                  { label: 'Real-Time Monitoring', desc: 'Track kW, kWh and amps by department or machine — live.' },
+                  { label: 'Predictive Maintenance', desc: 'Detect motor wear from amperage trends before failures occur.' },
+                  { label: 'Accountability', desc: 'Trace overconsumption to specific shifts, lines, or equipment.' },
+                ].map((item) => (
+                  <div key={item.label} className="flex gap-4">
+                    <div className="mt-1 flex-shrink-0 w-2 h-2 rounded-full" style={{ backgroundColor: '#34d399', marginTop: '6px' }} />
+                    <div>
+                      <span className="text-sm font-semibold text-white">{item.label}</span>
+                      <span className="text-sm" style={{ color: '#94a3b8' }}> — {item.desc}</span>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
-                aria-label="Previous brand"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
-                aria-label="Next brand"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {brands.map((brand, index) => (
-                <div key={index} className="border p-4 flex items-center justify-center h-32">
-                  <Image src={brand.logo} alt={brand.name} width={200} height={60} className="max-w-full max-h-full" />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-    <div className="w-full mx-auto px-8 md:px-32 py-12 bg-[#e6f7ff]">
-      <h1 className="text-4xl font-bold text-center mb-12">Solutions</h1>
-      
-      {/* Desktop view */}
-      <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {solutionsData.map((solution) => (
-          <div key={solution.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="p-6 flex items-start space-x-4">
-              <div className="flex-shrink-0 w-16 h-16 bg-red-500 rounded-full flex items-center justify-center text-white text-3xl font-bold">
-                {solution.id}
-              </div>
-              <div>
-                <h2 className="text-xl font-semibold mb-2">{solution.title}</h2>
-                <p className="text-gray-600">{solution.description}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Mobile view */}
-      <div className="md:hidden">
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="p-6">
-            <div className="flex-shrink-0 w-16 h-16 bg-red-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4 mx-auto">
-              {solutionsData[solutionsCurrentIndex].id}
-            </div>
-            <h2 className="text-xl font-semibold mb-2 text-center">{solutionsData[solutionsCurrentIndex].title}</h2>
-            <p className="text-gray-600 text-center">{solutionsData[solutionsCurrentIndex].description}</p>
-          </div>
-        </div>
-        <div className="flex justify-center mt-4 space-x-4">
-          <button variant="outline" size="icon" onClick={prevSolutionSlide}>
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          <button variant="outline" size="icon" onClick={nextSolutionSlide}>
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-    </div>
-
-        <section className="py-16 px-4">
-          <div className="container mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Testimonials</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { name: 'Sarah M.', content: 'Prince Group provided excellent service and high-quality products for our commercial project.' },
-                { name: 'James L.', content: 'The team at Prince Group was professional and knowledgeable. Highly recommended!' },
-                { name: 'Emily R.', content: 'We were impressed by the innovative solutions offered by Prince Group for our industrial needs.' },
-              ].map((testimonial, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-md p-6">
-                  <p className="text-gray-600 mb-4">"{testimonial.content}"</p>
-                  <p className="font-semibold">{testimonial.name}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 px-4 bg-[#e6f7ff]">
-          <div className="container mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Latest News</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                { title: 'Maximizing efficiency with smart electrical systems', image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/latest1.png' },
-                { title: 'The future of renewable energy in industrial applications', image: 'https://ducaqjqbmh7lv.cloudfront.net/mysite/latest2.png' },
-              ].map((post, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                  <Image src={post.image} alt={post.title} width={600} height={400} className="w-full h-48 object-cover" />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-                    <button variant="outline">Read More</button>
                   </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/demo/dashboard"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md font-bold text-sm transition-colors"
+                  style={{ backgroundColor: '#059669', color: '#ffffff' }}
+                >
+                  <PlayCircle className="h-4 w-4" /> Try Live Demo
+                </Link>
+                <Link
+                  href="/energy-management"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md font-semibold text-sm"
+                  style={{ backgroundColor: 'transparent', color: '#34d399', border: '1px solid rgba(52,211,153,0.4)' }}
+                >
+                  Learn More <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+            <div className="space-y-4">
+              {[
+                { metric: '30%', label: 'of industrial energy lost to unseen inefficiencies daily' },
+                { metric: '10–20%', label: 'average annual growth in energy costs' },
+                { metric: 'Plug & Play', label: 'RS485 / Ethernet setup — no complex installation' },
+                { metric: 'Multi-site', label: 'Scale from a single machine to your entire facility' },
+              ].map((card) => (
+                <div
+                  key={card.metric}
+                  className="rounded-xl p-6 flex items-center gap-5"
+                  style={{ backgroundColor: '#1e293b', border: '1px solid #334155' }}
+                >
+                  <div className="text-2xl font-bold flex-shrink-0 w-28" style={{ color: '#34d399' }}>{card.metric}</div>
+                  <div className="text-sm" style={{ color: '#94a3b8' }}>{card.label}</div>
                 </div>
               ))}
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
+      <section className="py-20 px-4" style={{ backgroundColor: '#ffffff' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
+            <div>
+              <h2 className="text-3xl font-bold mb-2" style={{ color: '#0f172a' }}>Featured Projects</h2>
+              <p style={{ color: '#64748b' }}>Delivering at scale — across Pakistan</p>
+            </div>
+            <Link href="/projects" className="text-sm font-semibold inline-flex items-center gap-1" style={{ color: '#2563eb' }}>
+              All Projects <ChevronRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {projects.map((p) => (
+              <div key={p.title} className="rounded-xl overflow-hidden shadow-md border" style={{ borderColor: '#e2e8f0' }}>
+                <div className="relative h-48">
+                  <Image src={p.image} alt={p.title} fill objectFit="cover" />
+                </div>
+                <div className="p-6">
+                  <span className="text-xs font-semibold uppercase tracking-wide mb-2 block" style={{ color: '#dc2626' }}>
+                    Electrical Project
+                  </span>
+                  <h3 className="text-base font-bold mb-2" style={{ color: '#0f172a' }}>{p.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#64748b' }}>{p.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── BRANDS ───────────────────────────────────────────────────────── */}
+      <section className="py-20 px-4" style={{ backgroundColor: '#f8fafc' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-3" style={{ color: '#0f172a' }}>Our Principals</h2>
+            <p style={{ color: '#64748b' }}>Original products — directly sourced from world-class manufacturers</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {brands.map((brand) => (
+              <div
+                key={brand.name}
+                className="bg-white rounded-xl p-6 flex items-center justify-center h-28 shadow-sm"
+                style={{ border: '1px solid #e2e8f0' }}
+              >
+                <Image
+                  src={brand.logo}
+                  alt={brand.name}
+                  width={140}
+                  height={50}
+                  className="max-h-12 w-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </div>
   )
 }

@@ -1,191 +1,147 @@
-import { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { UserIcon } from '@heroicons/react/20/solid';
-import { Bars3Icon, BellIcon, XMarkIcon, SunIcon, MoonIcon, HomeIcon, UserGroupIcon, FolderIcon, CalendarIcon, ClipboardDocumentIcon, ChartPieIcon } from '@heroicons/react/24/outline';
-import React, { useContext, useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useAppContext } from '../context/AppContext';
+'use client'
+import { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Menu, X, Zap, PlayCircle } from 'lucide-react'
 
-const navigation = [
-
-
-  { name: 'Home', href: '/', current: true },
-  { name: 'Products', href: '/projects', current: false },
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Products', href: '/products' },
+  { name: 'Services', href: '/services' },
+  { name: 'Energy Management', href: '/energy-management', highlight: true },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Contact Us', href: '/contact-us' },
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
-
 export default function Header() {
-
-  const { theme, isOpen, toggleSidebar,toggleTheme } = useAppContext();
-
-  const logoClass = theme === 'dark' ? 'https://ducaqjqbmh7lv.cloudfront.net/mysite/logo_dark1.png' : 'https://ducaqjqbmh7lv.cloudfront.net/mysite/prince_logo7.png';
-  const bgImage = theme === 'dark' ? 'https://ducaqjqbmh7lv.cloudfront.net/mysite/dark_blur.jpg' : 'https://ducaqjqbmh7lv.cloudfront.net/mysite/prince_icn.svg';
-  const strokeClass = theme === 'dark' ? "#ffffff" : "#2f2f2f";
-  const bgColor = theme === 'dark' ? "bg-white text-slate-900" : "bg-black text-white";
-  const sideBar = theme === 'dark' ? "bg-neutral-800 text-slate-200" : "bg-teal-400 text-slate-900";
-  const bgClass = `url(${bgImage})`;
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <div
-            className="bg-fixed bg-cover bg-center divide-neutral-300"
-            style={{ backgroundImage: bgClass }}
-          >
+    <header className="sticky top-0 z-50 shadow-xl" style={{ fontFamily: 'Eurostile' }}>
+      {/* Top contact strip — desktop only */}
+      <div className="hidden lg:block py-2 px-8" style={{ backgroundColor: '#0f172a' }}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center text-xs" style={{ color: '#94a3b8' }}>
+          <span className="font-semibold tracking-wide" style={{ color: '#60a5fa' }}>
+            Pakistan's Sole Distributors of Mitsubishi Electric Switchgear
+          </span>
+          <div className="flex gap-6">
+            <span>+92-42-575232 &nbsp;|&nbsp; 5753373</span>
+            <span>info@princeelectric.com</span>
+            <span>2-P Gulberg II, Lahore</span>
+          </div>
+        </div>
+      </div>
 
-    <Disclosure as="nav">
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 z-20">
-            <div className="relative flex h-20 items-center justify-between">
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <Transition
-                  show={!isOpen}
-                  enter="transition ease-out duration-300"
-                  enterFrom="transform opacity-0 -translate-x-full"
-                  enterTo="transform opacity-100 translate-x-0"
-                  leave="transition ease-in duration-300"
-                  leaveFrom="transform opacity-100 translate-x-0"
-                  leaveTo="transform opacity-0 -translate-x-full"
-                >
-                  <Link href={{ pathname: '/' }} passHref>
-                    <div className="flex w-full justify-center lg:justify-start items-center"> {/* Center-align on mobile, left-align on large screens */}
-                      <div className="flex-shrink-0 relative z-10"> {/* Prevents logo from expanding and ensures layering */}
-                        <Image
-                          className="block w-auto lg:hidden mt-2"  // Center-align image on mobile
-                          src={logoClass}
-                          width={120}
-                          height={50}
-                        />
-                        <Image
-                          className="hidden lg:block ml-10 my-2 ml-44"  // Original styling for larger screens
-                          src={logoClass}
-                          width={180}
-                          height={70}
-                        />
-                      </div>
-                    </div>
+      {/* Main nav bar */}
+      <div style={{ backgroundColor: '#1e293b' }}>
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="flex items-center justify-between h-18 py-3">
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0 flex items-center gap-3">
+              <Image
+                src="/logo-icon.png"
+                alt="Prince Electric"
+                width={44}
+                height={44}
+                className="h-11 w-auto"
+              />
+              <span className="hidden sm:block font-bold text-lg tracking-wide text-white" style={{ fontFamily: 'Eurostile' }}>
+                PRINCE ELECTRIC
+              </span>
+            </Link>
+
+            {/* Desktop nav */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) =>
+                link.highlight ? (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-md transition-all"
+                    style={{ backgroundColor: '#2563eb', color: '#ffffff' }}
+                    onMouseEnter={e => e.currentTarget.style.backgroundColor = '#1d4ed8'}
+                    onMouseLeave={e => e.currentTarget.style.backgroundColor = '#2563eb'}
+                  >
+                    <Zap className="h-3.5 w-3.5" />
+                    {link.name}
                   </Link>
+                ) : (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="px-4 py-2 text-sm font-medium rounded-md transition-colors"
+                    style={{ color: '#cbd5e1' }}
+                    onMouseEnter={e => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.backgroundColor = '#334155' }}
+                    onMouseLeave={e => { e.currentTarget.style.color = '#cbd5e1'; e.currentTarget.style.backgroundColor = 'transparent' }}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              )}
+            </nav>
 
-                </Transition>
-                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                  {/* Mobile menu button*/}
-                  <button onClick={toggleSidebar} className="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className="block h-4 w-4" stroke={strokeClass} aria-hidden="true" />
-                    ) : (
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke={strokeClass} className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div className="flex items-center hidden sm:block mr-20">
-                <div className="flex items-center space-x-8">
-                  <div className="flex items-center">
-                    <div className="bg-red-500 rounded-lg p-2 mr-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold">Call Us:</p>
-                      <p className="text-sm">+92-42-575292, 5753373</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="bg-blue-600 rounded-lg p-2 mr-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold">Address:</p>
-                      <p className="text-sm">2-P Gulberg II, Lahore, Pakistan.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {/* Live Demo CTA — desktop */}
+            <Link
+              href="/demo/dashboard"
+              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-bold transition-all"
+              style={{ backgroundColor: '#059669', color: '#ffffff', border: '2px solid #059669' }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#047857'; e.currentTarget.style.borderColor = '#047857' }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#059669'; e.currentTarget.style.borderColor = '#059669' }}
+            >
+              <PlayCircle className="h-4 w-4" />
+              Live Demo
+            </Link>
+
+            {/* Mobile hamburger */}
+            <button
+              className="lg:hidden p-2 rounded-md transition-colors"
+              style={{ color: '#cbd5e1' }}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div style={{ backgroundColor: '#0f172a', borderTop: '1px solid #334155' }}>
+            <div className="px-4 py-3 space-y-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-md"
+                  style={{
+                    color: link.highlight ? '#93c5fd' : '#cbd5e1',
+                    fontWeight: link.highlight ? '600' : '500',
+                  }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.highlight && <Zap className="h-4 w-4" />}
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+            <div className="px-4 pb-3">
+              <Link
+                href="/demo/dashboard"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-md text-sm font-bold"
+                style={{ backgroundColor: '#059669', color: '#ffffff' }}
+                onClick={() => setMobileOpen(false)}
+              >
+                <PlayCircle className="h-4 w-4" />
+                Try Live Demo
+              </Link>
+            </div>
+            <div className="px-8 py-4 space-y-1 text-xs" style={{ color: '#64748b', borderTop: '1px solid #1e293b' }}>
+              <p>+92-42-575232 | 5753373</p>
+              <p>info@princeelectric.com</p>
             </div>
           </div>
-          <nav className="bg-red-500 hidden lg:block py-4">
-            <div className="container mx-auto px-4">
-              <div className="flex justify-center items-center">
-                <ul className="flex">
-                  {['Home', 'Products', 'Services', 'Testimonials', 'Projects', 'Latest News', 'Contact Us'].map((item) => (
-                    <li key={item}>
-                      <Link
-                        href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`}
-                        className="text-white hover:text-gray-200 transition duration-150 ease-in-out py-6 text-lg px-6 text-white bg-transparent hover:bg-white hover:text-gray-900 transition-colors"
-                      >
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </nav>
-
-            <div className={`block lg:hidden z-10 fixed inset-y-0 left-0 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform ${sideBar} duration-300 ease-in-out md:w-60 w-full px-4`}>
-              <div className="flex my-2 md:my-0">
-                <button 
-                  className={`relative ${isOpen ? 'md:ml-0 mt-2 md:mt-4' : 'md:ml-44'} ml-full p-2 ${bgColor} hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white`} 
-                  onClick={toggleSidebar}>
-                    {isOpen ? (
-                      <XMarkIcon className="block md:h-6 md:w-6 w-4 h-4 mt-0" aria-hidden="true" />
-                    ) : (
-                      <Bars3Icon className="block md:h-8 md:w-8 w-4 h-4" aria-hidden="true" />
-                    )}
-                </button>
-                <Link href={{pathname: '/'}} passHref className="ml-6 md:mt-4 mt-2">
-                    <Image
-                      className="block w-auto lg:hidden"
-                      src={logoClass}
-                      width={150}
-                      height={80}
-                    />
-                </Link>
-              </div>
-              <Link href="/dashboard" className='flex mt-10 hover:bg-teal-600 p-2 rounded-md cursor-pointer'>
-                <HomeIcon className="w-6 h-6 text-gray-800" stroke={strokeClass} />
-                <p className='pl-4 pt-1'> Dashboard </p>
-              </Link>
-              <Link href="/teams" className='flex hover:bg-teal-600 p-2 rounded-md cursor-pointer'>
-                <UserGroupIcon className="w-6 h-6 text-gray-800" stroke={strokeClass} />
-                <p className='pl-4 pt-1'> Teams </p>
-              </Link>
-              <div className='flex hover:bg-teal-600 p-2 rounded-md cursor-pointer'>
-                <FolderIcon className="w-6 h-6 text-gray-800" stroke={strokeClass} />
-                <p className='pl-4 pt-1'> Projects </p>
-              </div>
-              <div className='flex hover:bg-teal-600 p-2 rounded-md cursor-pointer'>
-                <CalendarIcon className="w-6 h-6 text-gray-800" stroke={strokeClass} />
-                <p className='pl-4 pt-1'> Calendar </p>
-              </div>
-              <div className='flex hover:bg-teal-600 p-2 rounded-md cursor-pointer'>
-                <ClipboardDocumentIcon className="w-6 h-6 text-gray-800" stroke={strokeClass} />
-                <p className='pl-4 pt-1'> Documents </p>
-              </div>
-              <div className='flex hover:bg-teal-600 p-2 rounded-md cursor-pointer'>
-                <ChartPieIcon className="w-6 h-6 text-gray-800" stroke={strokeClass} />
-                <p className='pl-4 pt-1'> Reports </p>
-              </div>
-              <h1 className="text-2xl font-bold my-4">Sidebar</h1>
-              <ul>
-                <li className="mt-4">Item 1</li>
-                <li className="mt-4">Item 2</li>
-                <li className="mt-4">Item 3</li>
-              </ul>
-            </div>
-          </>
         )}
-      </Disclosure>
-    </div>
+      </div>
+    </header>
   )
 }
